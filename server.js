@@ -2,18 +2,26 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import Meme from "./models/Meme.js"; // Add .js extension for ESM
+import Meme from "./models/Meme.js"; 
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cors({
+  origin: "http://localhost:3000", // your frontend URL
+  credentials: true
+}));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
+  
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
 
 // POST meme
 app.post("/api/memes", async (req, res) => {

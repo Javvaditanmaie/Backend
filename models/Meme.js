@@ -1,8 +1,13 @@
-const mongoose = require("mongoose");
+// models/Meme.js
+import mongoose from "mongoose";
 
-const MemeSchema = new mongoose.Schema({
-  url: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-});
+const memeSchema = new mongoose.Schema(
+  {
+    url: String,
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Meme", MemeSchema);
+const Meme = mongoose.model("Meme", memeSchema);
+
+export default Meme;
