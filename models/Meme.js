@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 const memeSchema = new mongoose.Schema(
   {
     url: String,
+    userId: String, 
+  createdAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
